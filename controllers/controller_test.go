@@ -2,10 +2,11 @@ package controllers
 
 import (
 	"fmt"
-	pixiuv1alpha1 "github.com/gopixiu-io/mysql-operator/api/v1alpha1"
 	"testing"
 
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
+
+	pixiuv1alpha1 "github.com/gopixiu-io/mysql-operator/api/v1alpha1"
 )
 
 func TestCompleteSpecConfig(t *testing.T) {
