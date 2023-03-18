@@ -23,19 +23,65 @@ import (
 // EDIT THIS FILE!  THIS IS SCAFFOLDING FOR YOU TO OWN!
 // NOTE: json tags are required.  Any new fields you add must have json tags for the fields to be serialized.
 
+type PodSpec struct {
+	Name            string `json:"name,omitempty"`
+	ImagePullPolicy string `json:"imagePullPolicy,omitempty"`
+	Port            int32  `json:"port,omitempty"`
+	MysqlSpec       `json:"mysqlSpec,omitempty"`
+	VolumeType      VolumeTp `json:"volumeType,omitempty"`
+}
+
+type VolumeTp string
+
+const (
+	EmptyDir VolumeTp = "emptyDir"
+	HostPath VolumeTp = "hostPath"
+)
+
+type MysqlSpec struct {
+	MysqlVersion string `json:"mysqlVersion,omitempty"`
+	MysqlPass    string `json:"mysqlPass,omitempty"`
+}
+
+type ServiceSpec struct {
+	Name           string `json:"name,omitempty"`
+	TargetPort     int32  `json:"targetPort,omitempty"`
+	ServicePort    int32  `json:"servicePort,omitempty"`
+	NodePortEnable bool   `json:"nodePortEnable,omitempty"`
+}
+
+type PodReplicas struct {
+	Available   int32 `json:"available,omitempty"`
+	Unavailable int32 `json:"unavailable,omitempty"`
+}
+
+type PhaseType string
+
+const (
+	PhasePending PhaseType = "PENDING"
+	PhaseRunning PhaseType = "RUNNING"
+	PhaseDone    PhaseType = "DONE"
+)
+
 // MysqlClusterSpec defines the desired state of MysqlCluster
 type MysqlClusterSpec struct {
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
 
 	// Foo is an example field of MysqlCluster. Edit mysqlcluster_types.go to remove/update
-	Foo string `json:"foo,omitempty"`
+	// Foo string `json:"foo,omitempty"`
+
+	PodSpec     `json:"podSpec,omitempty"`
+	ServiceSpec `json:"serviceSpec,omitempty"`
 }
 
 // MysqlClusterStatus defines the observed state of MysqlCluster
 type MysqlClusterStatus struct {
 	// INSERT ADDITIONAL STATUS FIELD - define observed state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
+	PodReplicas     `json:"podReplicas,omitempty"`
+	ServiceReplicas int32     `json:"serviceReplicas,omitempty"`
+	Phase           PhaseType `json:"phase,omitempty"`
 }
 
 //+kubebuilder:object:root=true
