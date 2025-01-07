@@ -79,20 +79,18 @@ helm repo index  /data/chartrepo/pixiuio  --url https://harbor.cloud.pixiuio.com
 
 ```bash
 docker run -d --name=helm-repo \
-    -p 80:80 \
-    -p 443:443 \
+    --network host \
     -v /data/chartrepo/pixiuio:/usr/share/nginx/html/chartrepo/pixiuio \
     -v /data/nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf \
     -v /data/nginx/ssl:/etc/nginx/ssl \
     ccr.ccs.tencentyun.com/pixiucloud/nginx
-
 ```
 
 ### 6. 验证 `Helm` 私有仓库
 
 ```bash
-helm   repo   add  pixiuio  https://harbor.cloud.pixiuio.com/chartrepo/pixiuio
-helm   search repo pixiuio
+helm repo add pixiuio  https://harbor.cloud.pixiuio.com/chartrepo/pixiuio
+helm search repo pixiuio
 ```
 
 得到如此回显表明部署成功
