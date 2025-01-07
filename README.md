@@ -110,7 +110,7 @@ pixiuio/zookeeper            	11.4.9       	3.8.2      	Apache ZooKeeper provide
 
 ### 7. 上传新 `chart` 包
 
-将新 `chart` 上传到 `/data/chartrepo/pixiuio 
+将新 `chart` 上传到  `/data/chartrepo/pixiuio` 
 然后执行下面的命令
 
 ```bash
