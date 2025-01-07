@@ -21,7 +21,7 @@ mkdir -p /usr/local/charts
 mkdir -p /usr/local/nginx/ssl
 ```
 
-# 准备 nginx 配置文件
+### 2. 准备 nginx 配置文件
 vim  /usr/local/nginx/nginx.conf
 
 ```bash
