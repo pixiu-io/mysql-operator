@@ -26,8 +26,8 @@ vim  /data/nginx/nginx.conf
 ```
 
    - `server_name harbor.cloud.pixiuio.com; 这里需要替换为自己的域名`
-   - `ssl_certificate /etc/nginx/ssl/helm-harbor.pem;  这里写上自己证书的名字`
-   - `ssl_certificate_key /etc/nginx/ssl/helm-harbor.key;  这里写上 key 的名字`
+   - `ssl_certificate /etc/nginx/ssl/helm-chart.pem;  这里写上自己证书的名字`
+   - `ssl_certificate_key /etc/nginx/ssl/helm-chart.key;  这里写上 key 的名字`
 
 ```bash
 server {
@@ -45,7 +45,7 @@ server {
 
     # SSL 配置
     ssl_certificate /etc/nginx/ssl/helm-chart.pem;
-    ssl_certificate_key /etc/nginx/ssl/helm-hchart.key;
+    ssl_certificate_key /etc/nginx/ssl/helm-chart.key;
 
     # SSL 强化配置
     ssl_protocols TLSv1.2 TLSv1.3;
