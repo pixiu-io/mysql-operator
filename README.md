@@ -53,4 +53,12 @@ server {
     }
 }
 ```
+### 3. 构建 `index.yaml` 文件
 
+确保以下目录和文件存在：
+```bash
+# 创建所需目录
+mkdir -p /usr/local/chartrepo/pixiuio
+mkdir -p /usr/local/charts
+mkdir -p /usr/local/nginx/ssl
+```
