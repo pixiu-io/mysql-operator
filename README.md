@@ -1,9 +1,9 @@
-# 部署 Helm 私有仓库指南
+# 部署 `Helm` 私有仓库指南
 
 ## 前置条件
 
-1. 已安装 Docker 并正常运行。
-2. 已安装 helm 。
+1. 已安装 `Docker` 并正常运行。
+2. 已安装 `helm` 。
 3. 已配置好需要挂载的目录和文件，确保以下路径存在并有正确的权限：
    - `/data/chartrepo/pixiuio`
    - `/data/nginx/nginx.conf`
@@ -20,12 +20,15 @@ mkdir -p /data/chartrepo/pixiuio
 mkdir -p /data/nginx/ssl
 ```
 
-### 2. 准备 nginx 配置文件
+### 2. 准备 `nginx` 配置文件
+```bash
 vim  /data/nginx/nginx.conf
+```
 
    - `server_name harbor.cloud.pixiuio.com; 这里需要替换为自己的域名`
    - `ssl_certificate /etc/nginx/ssl/helm-harbor.pem;  这里写上自己证书的名字`
    - `ssl_certificate_key /etc/nginx/ssl/helm-harbor.key;  这里写上 key 的名字`
+
 ```bash
 server {
     listen 80;
@@ -40,7 +43,7 @@ server {
     server_name harbor.cloud.pixiuio.com;
 
     # SSL 配置
-    ssl_certificate /etc/nginx/ssl/helm-harbor.pem;
+    ssl_certificate /etc/nginx/ssl/helm-.pem;
     ssl_certificate_key /etc/nginx/ssl/helm-harbor.key;
 
     # SSL 强化配置
@@ -67,7 +70,7 @@ server {
 ```bash
 helm repo index  /data/chartrepo/pixiuio  --url https://harbor.cloud.pixiuio.com/chartrepo/pixiuio
 ```
-### 5. 启动 Helm 私有仓库容器
+### 5. 启动 `Helm` 私有仓库容器
 
 ```bash
 docker run -d --name=helm-repo \
@@ -80,7 +83,7 @@ docker run -d --name=helm-repo \
 
 ```
 
-### 6. 验证 Helm 私有仓库
+### 6. 验证 `Helm` 私有仓库
 
 ```bash
 helm   repo   add  pixiuio  https://harbor.cloud.pixiuio.com/chartrepo/pixiuio
@@ -106,9 +109,9 @@ pixiuio/xgnginx              	0.1.0        	1.16.0     	A Helm chart for Kuberne
 pixiuio/zookeeper            	11.4.9       	3.8.2      	Apache ZooKeeper provides a reliable, centraliz...
 ```
 
-### 7. 上传新 chart 包
+### 7. 上传新 `chart` 包
 
-将新`charts` 上传到 `/data/chartrepo/pixiuio 
+将新 `charts` 上传到 `/data/chartrepo/pixiuio 
 然后执行下面的命令
 
 ```bash
