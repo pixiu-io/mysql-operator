@@ -25,6 +25,32 @@ mkdir -p /usr/local/nginx/ssl
 vim  /usr/local/nginx/nginx.conf
 
 ```bash
+server {
+    listen 80;
+    server_name localhost;
 
+    # 重定向所有 HTTP 请求到 HTTPS
+    return 301 https://$host$request_uri;
+}
+
+server {
+    listen 443 ssl;
+    server_name harbor.cloud.pixiuio.com;
+
+    # SSL 配置
+    ssl_certificate /etc/nginx/ssl/helm-harbor.pem;
+    ssl_certificate_key /etc/nginx/ssl/helm-harbor.key;
+
+    # SSL 强化配置
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_ciphers 'ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:...';
+    ssl_prefer_server_ciphers on;
+
+    # 网站根目录配置
+    location / {
+        root /usr/share/nginx/html;
+        index index.html;
+    }
+}
 ```
 
