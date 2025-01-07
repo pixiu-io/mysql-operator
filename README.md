@@ -61,7 +61,7 @@ server {
 
 ### 3. 上传 `charts`
 
-将 `charts` 上传到 `/data/chartrepo/pixiuio 
+将 `charts` 上传到 `/data/chartrepo/pixiuio`
 
 
 ### 4. 构建 `index.yaml` 文件
