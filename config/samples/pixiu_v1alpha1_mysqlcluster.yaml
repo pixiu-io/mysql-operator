@@ -1,6 +1,0 @@
-apiVersion: pixiu.pixiu.io/v1alpha1
-kind: MysqlCluster
-metadata:
-  name: mysqlcluster-sample
-spec:
-  # TODO(user): Add fields here
