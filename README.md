@@ -40,28 +40,33 @@ server {
 
 server {
     listen 443 ssl;
+    # 配置域名
     server_name harbor.cloud.pixiuio.com;
 
     # SSL 配置
-    ssl_certificate /etc/nginx/ssl/helm-.pem;
-    ssl_certificate_key /etc/nginx/ssl/helm-harbor.key;
+    ssl_certificate /etc/nginx/ssl/helm-chart.pem;
+    ssl_certificate_key /etc/nginx/ssl/helm-hchart.key;
 
     # SSL 强化配置
     ssl_protocols TLSv1.2 TLSv1.3;
     ssl_ciphers 'ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:...';
     ssl_prefer_server_ciphers on;
 
-    # 网站根目录配置
-    location / {
-        root /usr/share/nginx/html;
-        index index.html;
+    # 网站页面配置
+    location = / {
+        return 301 https://harbor.cloud.pixiuio.com/chartrepo/pixiuio/;
+    }
+    location /chartrepo/pixiuio {
+        alias /usr/share/nginx/html/chartrepo/pixiuio;
+        autoindex on;
     }
 }
 ```
 
-### 3. 上传 `charts`
+### 3. 上传 `charts` 以及配置 `index.html`
 
-将 `charts` 上传到 `/data/chartrepo/pixiuio`
+
+将 `charts` 以及 `index.html`  上传到 `/data/chartrepo/pixiuio`
 
 
 ### 4. 构建 `index.yaml` 文件
