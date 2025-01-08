@@ -84,14 +84,13 @@ docker run -d --name=helm-repo \
     -v /data/nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf \
     -v /data/nginx/ssl:/etc/nginx/ssl \
     ccr.ccs.tencentyun.com/pixiucloud/nginx
-
 ```
 
 ### 6. 验证 `Helm` 私有仓库
 
 ```bash
-helm   repo   add  pixiuio  https://harbor.cloud.pixiuio.com/chartrepo/pixiuio
-helm   search repo pixiuio
+helm repo add pixiuio  https://harbor.cloud.pixiuio.com/chartrepo/pixiuio
+helm search repo pixiuio
 ```
 
 得到如此回显表明部署成功
